@@ -34,8 +34,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
 
-      - name: Upload to S3
+      - name: upload server files to S3
         run: aws s3 cp --region ap-northeast-2 ./hous.zip s3://weather.tj/deploy/
 
-      - name: Deploy to AWS Elastic Beanstalk (or other AWS services)
-        run: # Deployment command
+#      - name: Deploy to AWS Elastic Beanstalk (or other AWS services)
+#        run: # Deployment command
