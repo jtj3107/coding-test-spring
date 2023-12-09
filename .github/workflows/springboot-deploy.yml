@@ -35,7 +35,7 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: upload server files to S3
-        run: aws s3 cp --region ap-northeast-2 ./hous.zip s3://weather.tj/deploy/
+        run: aws s3 cp build.zip s3://weather.tj/deploy/ --region ap-northeast-2
 
 #      - name: Deploy to AWS Elastic Beanstalk (or other AWS services)
 #        run: # Deployment command
