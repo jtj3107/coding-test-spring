@@ -16,7 +16,7 @@ jobs:
         run: ./gradlew build
 
       - name: Zip the build files
-        run: zip -r build.zip build/libs/*.jar
+        run: zip -r hous.zip build/libs/*.jar
 
       - name: AWS configure credentials
         uses: aws-actions/configure-aws-credentials@v2
@@ -26,11 +26,7 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: Upload server files to S3
-        run: aws s3 cp --region ap-northeast-2 ./hous.zip s3://weather.tj/deploy/
-
-      - name: Deploy with AWS CodeDeploy (or other deployment services)
-        run: # Deployment command here
-
+        run: aws s3 cp hous.zip s3://weather.tj/deploy/ --region ap-northeast-2
 
       - name: Deploy with AWS CodeDeploy
         run: |
