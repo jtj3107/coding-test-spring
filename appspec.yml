@@ -4,15 +4,25 @@ files:
   - source: /
     destination: /home/ubuntu/build
     overwrite: yes
-
+hooks:
+  BeforeInstall:
+    - location: scripts/before_install.sh
+      timeout: 300
+      runas: ubuntu
+  AfterInstall:
+    - location: scripts/after_install.sh
+      timeout: 300
+      runas: ubuntu
+  ApplicationStart:
+    - location: scripts/application_start.sh
+      timeout: 300
+      runas: ubuntu
+  ApplicationStop:
+    - location: scripts/application_stop.sh
+      timeout: 300
+      runas: ubuntu
 permissions:
   - object: /home/ubuntu
     pattern: '**'
     owner: ubuntu
     group: ubuntu
-
-#hooks:
-#  AfterInstall:
-#    - location: scripts/start-spring-boot.sh
-#      timeout: 300
-#      runas: ubuntu
