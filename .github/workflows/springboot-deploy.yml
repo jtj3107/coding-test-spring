@@ -1,14 +1,5 @@
-name: Spring Boot CI/CD
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-    types: [ closed ]
-
 jobs:
-  build_and_deploy:
+  backend_build_and_deploy:
     runs-on: ubuntu-22.04
 
     steps:
@@ -24,19 +15,28 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Transfer build to EC2
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "build/libs/*.jar"
-          target: "/path/to/remote/directory"
+      - name: Zip the build files
+        run: zip -r build.zip build/libs/*.jar
 
-      - name: Execute the application on EC2
-        uses: appleboy/ssh-action@master
+      - name: AWS configure credentials
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: "java -jar /path/to/remote/directory/application.jar"
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: Upload server files to S3
+        run: aws s3 cp --region ap-northeast-2 ./hous.zip s3://weather.tj/deploy/
+
+      - name: Deploy with AWS CodeDeploy (or other deployment services)
+        run: # Deployment command here
+
+
+      - name: Deploy with AWS CodeDeploy
+        run: |
+          aws deploy create-deployment \
+          --application-name tj-code-deploy \
+          --deployment-config-name CodeDeployDefault.OneAtATime \
+          --deployment-group-name GROUP \
+          --s3-location bucket=weather.tj,bundleType=zip,key=deploy/hous.zip
+
