@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPOSITORY=/home/ubuntu/build
+REPOSITORY=/home/ubuntu/build/build/libs
 PROJECT_NAME=coding-test-spring
 
 echo "> Build 파일 복사"
