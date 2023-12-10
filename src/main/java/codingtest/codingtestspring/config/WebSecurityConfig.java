@@ -12,7 +12,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class WebSecurityConfig {
     @Bean
-    protected void configure(HttpSecurity http) throws Exception {
+    protected HttpSecurity configureHttpSecurity(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/home").permitAll()
@@ -22,14 +22,16 @@ public class WebSecurityConfig {
                         .permitAll()
                 )
                 .logout(withDefaults());
+        return http;
     }
 
     @Bean
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected AuthenticationManagerBuilder configureAuthenticationManager(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
                 .withUser("user")
-                .password("{noop}password") // {noop}는 비밀번호 인코딩을 사용하지 않음을 의미
+                .password("{noop}password")
                 .roles("USER");
+        return auth;
     }
 }
