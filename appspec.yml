@@ -7,7 +7,7 @@ files:
 
 hooks:
   ApplicationStart:
-    - location: deploy.sh
+    - location: /home/ubuntu/build/deploy.sh
       timeout: 100
       runas: ubuntu
 permissions:
