@@ -9,4 +9,9 @@ public class Controller {
     public String Home() {
         return "Welcome to the Spring Boot application!";
     }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login"; // login.html 템플릿을 반환
+    }
 }
