@@ -13,7 +13,6 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class WebSecurityConfig {
     @Bean
-    @Primary
     protected HttpSecurity configureHttpSecurity(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
@@ -28,6 +27,7 @@ public class WebSecurityConfig {
     }
 
     @Bean
+    @Primary
     protected AuthenticationManagerBuilder configureAuthenticationManager(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
