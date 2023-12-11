@@ -6,11 +6,12 @@ import codingtest.codingtestspring.repository.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-@RestController
+@Controller
 public class UserController {
 
     @Autowired
@@ -28,9 +29,9 @@ public class UserController {
         Optional<User> foundUser = userRepository.findByUsername(user.getUsername());
         if (foundUser.isPresent() && foundUser.get().getPassword().equals(user.getPassword())) {
             session.setAttribute("user", foundUser.get());
-            return "Login successful";
+            return "redirect:/home"; // 성공 시 홈 페이지로 리디렉션
         } else {
-            return "Invalid username or password";
+            return "redirect:/login?error"; // 실패 시 로그인 페이지로 리디렉션
         }
     }
 }
