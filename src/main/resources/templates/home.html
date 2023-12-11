@@ -5,7 +5,7 @@
     <style>
         .status-blue { color: blue; }
         .status-gray { color: gray; }
-        .login-button {
+        .auth-button {
             position: absolute;
             top: 20px;
             right: 20px;
@@ -21,11 +21,20 @@
 </head>
 <body>
 <div th:each="book : ${books}">
+    <p th:text="${books}"></p>
     <p>
         <span th:text="${book.title}"></span>
         <span th:class="${book.status == 'Available' ? 'status-blue' : 'status-gray'}" th:text="${book.status}"></span>
     </p>
 </div>
-<a href="/login" class="login-button">Login</a>
+
+<!-- 조건에 따라 로그인 또는 로그아웃 버튼 표시 -->
+<div th:if="${session != null && session.user != null}">
+    <a href="/logout" class="auth-button">Logout</a>
+</div>
+<div th:unless="${session != null && session.user != null}">
+    <a href="/login" class="auth-button">Login</a>
+</div>
+
 </body>
 </html>
