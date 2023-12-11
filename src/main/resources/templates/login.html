@@ -2,17 +2,33 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Login Page</title>
+    <style>
+        .button {
+            display: inline-block;
+            margin: 10px 5px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
 <div>
     <form action="#" th:action="@{/login}" method="post">
         <div><label>Username: <input type="text" name="username"/></label></div>
         <div><label>Password: <input type="password" name="password"/></label></div>
-        <div><input type="submit" value="Log in"/></div>
+        <div>
+            <input type="submit" value="Log in" class="button"/>
+            <a href="/signup" class="button">회원가입</a>
+        </div>
     </form>
-    <div>
-        <a href="/signup">회원가입</a>
-    </div>
 </div>
 </body>
 </html>
