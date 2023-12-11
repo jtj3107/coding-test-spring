@@ -18,6 +18,8 @@ public class HomeController {
     @GetMapping("/home")
     public String home(Model model) {
         List<Book> books = bookRepository.findAll();
+
+        System.out.println("Books: " + books);
         model.addAttribute("books", books);
         return "home"; // home.html 템플릿 반환
     }
