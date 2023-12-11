@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Page</title>
+    <style>
+        .status-blue { color: blue; }
+        .status-gray { color: gray; }
+        .login-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div th:each="book : ${books}">
+    <p>
+        <span th:text="${book.title}"></span>
+        <span th:class="${book.status == 'Available' ? 'status-blue' : 'status-gray'}" th:text="${book.status}"></span>
+    </p>
+</div>
+<a href="/login" class="login-button">Login</a>
+</body>
+</html>
