@@ -17,9 +17,10 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/signup")
-    public User signup(@RequestBody User user) {
+    public String signup(@ModelAttribute User user) {
         user.setCreatedAt(LocalDateTime.now());
-        return userRepository.save(user);
+        userRepository.save(user);
+        return "redirect:/login";
     }
 
     @PostMapping("/login")

@@ -6,9 +6,9 @@
 <body>
 <div>
     <form action="#" th:action="@{/signup}" method="post">
-        <div><label>Username: <input type="text" name="username"/></label></div>
-        <div><label>Password: <input type="password" name="password"/></label></div>
-        <div><label>Email: <input type="text" name="email"/></label></div>
+        <div><label>Username: <input type="text" name="username" required/></label></div>
+        <div><label>Password: <input type="password" name="password" required/></label></div>
+        <div><label>Email: <input type="email" name="email" required/></label></div>
         <div><input type="submit" value="Sign up"/></div>
     </form>
 </div>
