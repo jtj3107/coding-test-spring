@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Login Page</title>
+    <title>Signup Page</title>
 </head>
 <body>
 <div>
-    <form action="#" th:action="@{/login}" method="post">
+    <form action="#" th:action="@{/signup}" method="post">
         <div><label>Username: <input type="text" name="username"/></label></div>
         <div><label>Password: <input type="password" name="password"/></label></div>
-        <div><input type="submit" value="Log in"/></div>
+        <div><label>Email: <input type="text" name="email"/></label></div>
+        <div><input type="submit" value="Sign up"/></div>
     </form>
-    <div>
-        <a href="/signup">회원가입</a>
-    </div>
 </div>
 </body>
 </html>
