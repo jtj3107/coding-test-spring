@@ -25,7 +25,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody User user, HttpSession session) {
+    public String login(@ModelAttribute User user, HttpSession session) {
         Optional<User> foundUser = userRepository.findByUsername(user.getUsername());
         if (foundUser.isPresent() && foundUser.get().getPassword().equals(user.getPassword())) {
             session.setAttribute("user", foundUser.get());
