@@ -17,4 +17,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     // ISBN으로 도서 검색
     Book findByIsbn(String isbn);
+
+    List<Book> getAllBooks();
 }
