@@ -1,7 +1,10 @@
 package codingtest.codingtestspring.entity;
 
+import codingtest.codingtestspring.enums.BookStatus;
 import jakarta.persistence.*;
 import java.util.Date;
+
+
 
 @Entity
 @Table(name = "Book")
@@ -22,8 +25,9 @@ public class Book {
     @Temporal(TemporalType.DATE)
     private Date publishedDate;
 
+    @Enumerated(EnumType.STRING)
     @Column(length = 100)
-    private String status;
+    private BookStatus status = BookStatus.ON_LOAN;
 
     // Getter Setter
     public Integer getBookId() {
@@ -66,11 +70,12 @@ public class Book {
         this.publishedDate = publishedDate;
     }
 
-    public String getStatus() {
+
+    public BookStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(BookStatus status) {
         this.status = status;
     }
 }
