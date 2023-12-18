@@ -2,6 +2,8 @@
 
 source /home/ubuntu/.bashrc
 
+echo $DB_PASSWROD
+
 REPOSITORY=/home/ubuntu/build/build/libs
 PROJECT_NAME=coding-test-spring
 
