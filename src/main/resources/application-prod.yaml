@@ -1,9 +1,7 @@
 # mysql
 spring:
-  profiles:
-    active: dev
   datasource:
-    url: jdbc:mysql://localhost:3306/study_db
+    url: jdbc:mysql://database-2.c83odifrrurw.ap-northeast-2.rds.amazonaws.com:3306/study_db
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
   # jpa

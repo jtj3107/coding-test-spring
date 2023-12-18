@@ -17,7 +17,7 @@ public class HomeController {
 
     @GetMapping("/home")
     public String home(Model model) {
-        List<Book> books = bookRepository.getAllBooks();
+        List<Book> books = bookRepository.findAll();
 
         System.out.println("Books: " + books);
         model.addAttribute("books", books);

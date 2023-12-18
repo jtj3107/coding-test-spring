@@ -11,11 +11,11 @@ public class LoanHistory {
     private Integer loanId;
 
     @ManyToOne
-    @JoinColumn(name = "BookID")
+    @JoinColumn(name = "bookID")
     private Book book;
 
     @ManyToOne
-    @JoinColumn(name = "UserID")
+    @JoinColumn(name = "userID")
     private User user;
 
     @Temporal(TemporalType.TIMESTAMP)
