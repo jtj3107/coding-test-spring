@@ -24,11 +24,23 @@ public class BookController {
     public Book updateBook(@PathVariable Integer id, @RequestBody Book bookDetails) {
         Book book = bookRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Book not found with id " + id));
-        book.setTitle(bookDetails.getTitle());
-        book.setAuthor(bookDetails.getAuthor());
-        book.setIsbn(bookDetails.getIsbn());
-        book.setPublishedDate(bookDetails.getPublishedDate());
-        book.setStatus(bookDetails.getStatus());
+
+        if (bookDetails.getTitle() != null) {
+            book.setTitle(bookDetails.getTitle());
+        }
+        if (bookDetails.getAuthor() != null) {
+            book.setAuthor(bookDetails.getAuthor());
+        }
+        if (bookDetails.getIsbn() != null) {
+            book.setIsbn(bookDetails.getIsbn());
+        }
+        if (bookDetails.getPublishedDate() != null) {
+            book.setPublishedDate(bookDetails.getPublishedDate());
+        }
+        if (bookDetails.getStatus() != null) {
+            book.setStatus(bookDetails.getStatus());
+        }
+
         return bookRepository.save(book);
     }
 
